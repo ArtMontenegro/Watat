@@ -1,0 +1,53 @@
+body {
+    background-color: gold;
+    font-family: Georgia;
+}
+h1 {
+    font-size: 80px; color: red;
+    text-align: center;
+}
+h2 {
+    color: red;
+    text-align: center;
+}
+p {
+    color: red;
+    font-size: 200%;
+    border: 3px solid blue;
+    padding: 5px;
+}
+a:link, a:visited {
+    background-color: red;
+    color: gold;
+    padding: 10px;
+    text-align: center;
+    font-size: 200%;
+    display: inline-block;
+}
+pre {
+    background-color: red;
+}
+header, footer {
+    font-family: Trebuchet MS;
+}
+img {
+    width: 20%;
+    height: 20%;
+    margin: 15px;
+    border: 5px solid red;
+    padding: 10px;
+}
+table {
+    font-family: Georgia;
+    border: 5px solid #ff0000;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #ff0000;
+    text-align: center;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #ff0000;
+}
