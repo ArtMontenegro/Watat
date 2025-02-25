@@ -3,21 +3,21 @@ body {
     font-family: Georgia;
 }
 h1 {
-    font-size: 80px; color: red;
+    font-size: 80px; color: #dd0000;
     text-align: center;
 }
 h2 {
-    color: red;
+    color: #dd0000;
     text-align: center;
 }
 p {
-    color: red;
+    color: #dd0000;
     font-size: 200%;
-    border: 3px solid blue;
+    border: 3px solid #000099;
     padding: 5px;
 }
 a:link, a:visited {
-    background-color: red;
+    background-color: #dd0000;
     color: gold;
     padding: 10px;
     text-align: center;
@@ -25,7 +25,7 @@ a:link, a:visited {
     display: inline-block;
 }
 pre {
-    background-color: red;
+    background-color: #dd0000;
 }
 header, footer {
     font-family: Trebuchet MS;
@@ -34,20 +34,25 @@ img {
     width: 20%;
     height: 20%;
     margin: 15px;
-    border: 5px solid red;
+    border: 5px solid #dd0000;
     padding: 10px;
 }
 table {
     font-family: Georgia;
-    border: 5px solid #ff0000;
+    border: 2px double #dd0000;
     border-collapse: collapse;
     width: 100%;
 }
-td, th {
-    border: 1px solid #ff0000;
+th {
+    border: 1px solid #000099;
     text-align: center;
     padding: 8px;
 }
+td {
+    border: 1px solid #000099;
+    text-align: left;
+    padding: 8px;
+}
 tr:nth-child(even) {
-    background-color: #ff0000;
+    background-color: #dd0000;
 }
