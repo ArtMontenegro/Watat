@@ -35,7 +35,7 @@ img {
     height: 20%;
     margin: 15px;
     border: 5px solid #dd0000;
-    padding: 10px;
+    padding: 5px;
 }
 table {
     font-family: Georgia;
@@ -55,4 +55,7 @@ td {
 }
 tr:nth-child(even) {
     background-color: #dd0000;
+}
+td:hover {
+    background-color: #55aaff;
 }
