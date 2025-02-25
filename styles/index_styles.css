@@ -1,61 +1,49 @@
 body {
-    background-color: gold;
-    font-family: Georgia;
+    background-color: rgb(201, 192, 174);
 }
 h1 {
-    font-size: 80px; color: #dd0000;
-    text-align: center;
+    color: rgb(110, 81, 83); font-style: oblique; text-align: center;
 }
-h2 {
-    color: #dd0000;
-    text-align: center;
-}
-p {
-    color: #dd0000;
-    font-size: 200%;
-    border: 3px solid #000099;
-    padding: 5px;
-}
-a:link, a:visited {
-    background-color: #dd0000;
-    color: gold;
-    padding: 10px;
-    text-align: center;
-    font-size: 200%;
-    display: inline-block;
+h2, p {
+    font-style: oblique; text-align: center;font-size: large;
 }
 pre {
-    background-color: #dd0000;
-}
-header, footer {
-    font-family: Trebuchet MS;
+    background-color: rgb(81, 110, 110); border: 10px solid rgb(81, 110, 110); border-radius: 10px; padding: 10px;
 }
 img {
-    width: 20%;
-    height: 20%;
-    margin: 15px;
-    border: 5px solid #dd0000;
-    padding: 5px;
+    margin: auto; display: block; border: 3px solid rgb(81, 110, 110); border-radius: 10px;
 }
 table {
-    font-family: Georgia;
-    border: 2px double #dd0000;
-    border-collapse: collapse;
-    width: 100%;
+    width: 100%; background-color: rgb(223, 195, 161);
 }
-th {
-    border: 1px solid #000099;
+tr {
+    color: rgb(81, 110, 110);
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}  
+li {
+    float: left;
+}  
+li a {
+    display: block;
+    color: white;
     text-align: center;
-    padding: 8px;
+    padding: 16px;
+    text-decoration: none;
 }
-td {
-    border: 1px solid #000099;
-    text-align: left;
-    padding: 8px;
+li a:hover {
+    background-color: #111111;
 }
-tr:nth-child(even) {
-    background-color: #dd0000;
+.familia-pastor {
+    background-color: rgb(81, 110, 110);
+    border: 3px solid rgb(81, 110, 110); border-radius: 10px;
 }
-td:hover {
-    background-color: #55aaff;
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
