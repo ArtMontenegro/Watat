@@ -3,7 +3,7 @@ body {
     font-family: Georgia;
 }
 h1 {
-    font-size: 80px; color: #dd0000;
+    font-size: 20vw; color: #dd0000;
     text-align: center;
 }
 h2 {
@@ -12,7 +12,7 @@ h2 {
 }
 p {
     color: #dd0000;
-    font-size: 200%;
+    font-size: 15vw;
     border: 3px solid #000099;
     padding: 5px;
 }
@@ -21,7 +21,7 @@ a:link, a:visited {
     color: gold;
     padding: 10px;
     text-align: center;
-    font-size: 200%;
+    font-size: 15vw;
     display: inline-block;
 }
 pre {
@@ -31,10 +31,17 @@ header, footer {
     font-family: Trebuchet MS;
 }
 img {
-    width: 20%;
-    height: 20%;
+    max-width: 100%;
+    height: auto;
     margin: 15px;
     border: 5px solid #dd0000;
+    padding: 5px;
+}
+iframe {
+    max-width: 90%;
+    height: auto;
+    margin: auto;
+    border: 3px solid #dd0000;
     padding: 5px;
 }
 table {
