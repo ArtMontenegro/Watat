@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.38, for Linux (x86_64)
 --
--- Host: 192.168.120.121    Database: mydata
+-- Host: 192.168.122.122    Database: mydata
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `Author`;
 CREATE TABLE `Author` (
   `authorId` bigint NOT NULL,
   `birthday` datetime(6) DEFAULT NULL,
-  `description` text,
+  `description` varchar(75) DEFAULT NULL,
   `name` varchar(75) DEFAULT NULL,
   `original12` tinyint DEFAULT NULL,
   PRIMARY KEY (`authorId`)
@@ -38,7 +38,7 @@ CREATE TABLE `Author` (
 
 LOCK TABLES `Author` WRITE;
 /*!40000 ALTER TABLE `Author` DISABLE KEYS */;
-INSERT INTO `Author` VALUES (0,'0001-01-01 00:00:00.000000','The identity of this author is unknown.','Anonymous',0),(1,'0010-10-23 00:00:00.000000','Matthew was a tax collector.','Matthew',1),(2,'0017-08-13 00:00:00.000000','Mark travelled with Barnabas.','Mark',0),(3,'0016-02-29 00:00:00.000000','Luke travelled with Paul.','Luke',0),(4,'0015-01-31 00:00:00.000000','John was the beloved disciple.','John',1),(5,'0001-01-31 00:00:00.000000','Paul was the least of the apostles.','Paul',0),(6,'0003-06-11 00:00:00.000000','James was the half-brother of Jesus.','James',0),(7,'0003-01-31 00:00:00.000000','Peter betrayed Jesus three times.','Peter',1),(8,'0008-03-26 00:00:00.000000','Jude was the brother of James.','Jude',0),(9,'0016-01-31 00:00:00.000000','Judas was in charge of the moneybag.','Judas',1),(10,'0014-01-31 00:00:00.000000','Matthias was chosen by lot to replace Judas in Acts 1:26.','Matthias',0);
+INSERT INTO `Author` VALUES (1,'0001-01-31 00:00:00.000000','Paul was the least of the apostles.','Paul',0),(2,'0015-01-31 00:00:00.000000','John was the beloved disciple.','John',1),(3,'0003-01-31 00:00:00.000000','Peter betrayed Jesus three times.','Peter',1),(4,'0016-01-31 00:00:00.000000','Judas was in charge of the moneybag.','Judas',1),(5,'0005-01-31 00:00:00.000000','jonh brother\'s','Tiago',1);
 /*!40000 ALTER TABLE `Author` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-25  9:41:22
+-- Dump completed on 2025-02-25 12:07:11

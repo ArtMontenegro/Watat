@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles/index_styles.css">
-    <title>Working</title>
-    <link rel="icon" type="image/x-icon" href="/images/port_favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/mc_styles.css">
+  <title>Working</title>
+  <link rel="icon" type="image/x-icon" href="/images/port_favicon.ico">
 </head>
 
 <header>
@@ -16,10 +18,12 @@
     
     <h1>It works!</h1>
     <hr>
-    
-    <div class="gallery">
+
+    <div style="width: 100%; display: inline-block; margin: auto;">
             <img src="/images/Portuguese.png" alt="Portuguese Cross of Christ" title="Portugal">
             <img src="/images/Templar.jpg" alt="Templar Knight" title="Boo!">
+    </div>
+    <div style="width: 100%; display: inline-block; margin: auto;">
             <img src="/images/mcdonalds.png" alt="McDonalds" usemap="#mcmap">
             <img src="/images/top-gun-maverick.gif" alt="Top Gun" usemap="#mavmap">
 
@@ -33,6 +37,14 @@
     </div>
 
     <h2>This is good!</h2>
+    <hr>
+
+    <button type="button"
+    onclick="document.getElementById('demo').innerHTML = Date()">
+    Click me to see Date and Time!</button>
+    
+    <p id="demo" style="border: none;"></p>
+
     <hr>
 
     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="click me">Great song</a>
@@ -51,7 +63,8 @@
         <del>Will it be different</del>
         Will it be the same</strong>
     </pre>
-    <a href="index.html">index</a>
+
+    <a href="/index.html">index</a>
     <a href="Welcome.html">Welcome</a>
     <a href="Numbas.html">Numbas</a>
 </body>
