@@ -3,7 +3,7 @@ body {
     font-family: Georgia;
 }
 h1 {
-    font-size: 20vw; color: #dd0000;
+    font-size: 10vw; color: #dd0000;
     text-align: center;
 }
 h2 {
@@ -12,16 +12,16 @@ h2 {
 }
 p {
     color: #dd0000;
-    font-size: 15vw;
+    font-size: 5vw;
     border: 3px solid #000099;
     padding: 5px;
 }
 a:link, a:visited {
     background-color: #dd0000;
     color: gold;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
-    font-size: 15vw;
+    font-size: 5vw;
     display: inline-block;
 }
 pre {
@@ -31,7 +31,7 @@ header, footer {
     font-family: Trebuchet MS;
 }
 img {
-    max-width: 100%;
+    max-width: 40%;
     height: auto;
     margin: 15px;
     border: 5px solid #dd0000;

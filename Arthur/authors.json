@@ -1,0 +1,11 @@
+[{"authorId":0, "birthday":"0001-01-01 00:00:00.000000", "description":"The identity of this author is unknown.", "name":"Anonymous", "original12":0},
+ {"authorId":1, "birthday":"0010-10-23 00:00:00.000000", "description":"Matthew was a tax collector.", "name":"Matthew", "original12":1},
+ {"authorId":2, "birthday":"0017-08-13 00:00:00.000000", "description":"Mark travelled with Barnabas.", "name":"Mark", "original12":0},
+ {"authorId":3, "birthday":"0016-02-29 00:00:00.000000", "description":"Luke travelled with Paul.", "name":"Luke", "original12":0},
+ {"authorId":4, "birthday":"0015-01-31 00:00:00.000000", "description":"John was the beloved disciple.", "name":"John", "original12":1},
+ {"authorId":5, "birthday":"0001-01-31 00:00:00.000000", "description":"Paul was the least of the apostles.", "name":"Paul", "original12":0},
+ {"authorId":6, "birthday":"0003-06-11 00:00:00.000000", "description":"James was the half-brother of Jesus.", "name":"James", "original12":0},
+ {"authorId":7, "birthday":"0003-01-31 00:00:00.000000", "description":"Peter betrayed Jesus three times.", "name":"Peter", "original12":1},
+ {"authorId":8, "birthday":"0008-03-26 00:00:00.000000", "description":"Jude was the brother of James.", "name":"Jude", "original12":0},
+ {"authorId":9, "birthday":"0016-01-31 00:00:00.000000", "description":"Judas was in charge of the moneybag.", "name":"Judas", "original12":1},
+ {"authorId":10, "birthday":"0014-01-31 00:00:00.000000", "description":"Matthias was chosen by lot to replace Judas in Acts 1:26.", "name":"Matthias", "original12":0}]
