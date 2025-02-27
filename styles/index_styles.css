@@ -13,6 +13,9 @@ pre {
 img {
     margin: auto; display: block; border: 3px solid rgb(81, 110, 110); border-radius: 10px;
 }
+iframe {
+    margin: auto;
+}
 table {
     width: 100%; background-color: rgb(223, 195, 161);
 }
