@@ -60,7 +60,7 @@ td {
     text-align: left;
     padding: 8px;
 }
-tr:nth-child(even) {
+tr:nth-child(even) /* This highlights the even rows */ {
     background-color: #dd0000;
 }
 td:hover {
