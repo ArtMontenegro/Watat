@@ -1,0 +1,82 @@
+/* 
+=============================================
+🔹 Reset global: Remove margens e paddings padrão
+    e usa box-sizing para facilitar o layout
+=============================================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* 
+=============================================
+🔹 Corpo da página: Define altura total e cor de fundo
+=============================================
+*/
+body { 
+    height: 100vh;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+=============================================
+🔹 Cabeçalho: Organiza os elementos do topo 
+=============================================
+*/
+.header {
+    display: flex;
+    align-items: center;  /* Alinha os itens verticalmente */
+    justify-content: space-between; /* Distribui os itens */
+    background-color: #007969; /* Cor de fundo */
+    color: #fff; /* Texto branco */
+    padding: 10px 20px; /* Espaçamento interno */
+}
+
+/* Ícone do cabeçalho */
+.header img {
+    height: 4em; /* Define um tamanho fixo para o ícone */
+}
+
+/* Texto do título no cabeçalho */
+.header p {
+    flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
+    text-align: center; /* Centraliza o texto */
+    font-size: 1.8em; /* Define o tamanho da fonte */
+    font-weight: bold; /* Deixa o texto em negrito */
+}
+
+/* 
+=============================================
+🔹 Botões do cabeçalho
+=============================================
+*/
+.headerButtons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+/* Cada botão do cabeçalho */
+.headerButton {
+    width: 30px; /* Define largura do botão */
+    height: 30px; /* Define altura do botão */
+    display: flex;
+    align-items: center; /* Centraliza o ícone */
+    justify-content: center;
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
+
+/* Ícones dentro dos botões */
+.headerButton img {
+    width: 100%; /* Faz o ícone ocupar todo o botão */
+    height: auto; /* Mantém a proporção */
+    filter: invert(100%); /* Deixa o ícone branco */
+}
+
+
+

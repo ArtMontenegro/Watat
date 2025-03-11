@@ -1,0 +1,117 @@
+/* 
+=============================================
+🔹 Lista de Salmos (Main)
+=============================================
+*/
+
+/* Container principal da lista de Salmos */
+.salmos-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas por linha */
+    row-gap: 15px; /* Espaçamento vertical */
+    column-gap: 5px; /* Espaçamento horizontal menor */
+    place-items: center; /* Centraliza os itens */
+    padding: 30px;
+    max-width: 90%;
+    margin: 0 auto;
+    max-width: 600px; /* Ajuste conforme necessário */
+    min-width: 100px;
+}
+
+
+/* Estilização das caixas dos Salmos */
+.salmo-box {
+    width: 100px;  /* Define largura */
+    height: 100px; /* Define altura */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007969; /* Cor de fundo */
+    color: white; /* Cor do número */
+    font-size: 2em; /* Número maior */
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative; /* Necessário para o balão */
+    text-decoration: none; /* Remove sublinhado do link */
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+/* Efeito ao passar o mouse */
+.salmo-box:hover {
+    background-color: #005f50; /* Cor mais escura */
+    transform: scale(1.05); /* Efeito de leve aumento */
+}
+
+/* Balão (tooltip) com o título do Salmo */
+.salmo-box::after {
+    content: attr(data-title); /* Pega o título do atributo */
+    position: absolute;
+    bottom: 110%; /* Posição do balão */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    max-width: 80vw; /* Evita cortes em telas pequenas */
+    overflow-wrap: break-word;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Evita que o balão interfira */
+}
+
+/* Exibe o balão ao passar o mouse */
+.salmo-box:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 
+=========================================
+    ESTILIZAÇÃO DOS SALMOS SEM LETRA
+=========================================
+*/
+
+/* Remove a interatividade dos Salmos sem letra */
+.salmo-box.disabled {
+    background-color: #999; /* Cor cinza */
+    cursor: default; /* Remove a indicação de clique */
+    pointer-events: none; /* Evita interação */
+    transition: background 0.3s ease;
+}
+
+/* Remove o balão ao passar o mouse */
+.salmo-box.disabled::after {
+    content: none;
+}
+
+/* 
+=========================================
+    RESPONSIVIDADE
+=========================================
+*/
+
+/* Ajusta para 4 colunas em telas menores */
+@media (max-width: 900px) {
+    .salmos-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Ajusta para 3 colunas em telas médias */
+@media (max-width: 600px) {
+    .salmos-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Ajusta para 2 colunas em telas muito pequenas */
+@media (max-width: 400px) {
+    .salmos-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
