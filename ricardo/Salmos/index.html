@@ -9,11 +9,18 @@
 </head>
 <body>
     <div class="header">
-        <img src="assets/img.webp" alt="icon salterio">
+        
         <p>Saltério Reformado</p>
         <div class="headerButtons">
-            <div class="headerButton"><img src="assets/search.png"></div>
-            <div class="headerButton"><img src="assets/dots.png"></div>
+            <div class="search-container">
+                <div id="search-button">
+                    <img src="assets/search.png" alt="Buscar">
+                </div>
+                <input type="text" id="search-box" placeholder="Buscar Salmo...">
+            </div>
+            
+            <div id="menu-button" class="headerButton"><img src="assets/dots.png"></div>
+</div>
         </div>
     </div>
 
@@ -22,5 +29,6 @@
     </main>
 
     <script src="js/index.js"></script> <!-- Chama o JavaScript -->
+    <script src="js/ecmas.js"></script> <!-- Chama o JavaScript -->
 </body>
 </html>

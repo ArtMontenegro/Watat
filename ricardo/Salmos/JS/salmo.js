@@ -1,10 +1,10 @@
 // Função para obter parâmetros da URL
 function obterNumeroSalmo() {
     const params = new URLSearchParams(window.location.search);
-    return params.get("numero");
+    return params.get("numero"); // Obtém o número do Salmo na URL
 }
 
-// Função para carregar o Salmo
+// Função para carregar os Salmos do JSON
 async function carregarSalmo() {
     const numero = obterNumeroSalmo();
     if (!numero) {
@@ -13,22 +13,26 @@ async function carregarSalmo() {
     }
 
     try {
-        // Busca o arquivo do Salmo
-        const response = await fetch(`salmos/salmo${numero}.txt`);
-        if (!response.ok) throw new Error("Salmo não encontrado");
+        // Busca o arquivo JSON
+        const response = await fetch("./salmos/salmos.json");
+        if (!response.ok) throw new Error("Erro ao carregar os Salmos");
 
-        // Lê o conteúdo do arquivo
-        const texto = await response.text();
-        const linhas = texto.trim().split("\n");
+        // Converte o JSON para um array de objetos
+        const salmos = await response.json();
+        
+        // Procura pelo Salmo correspondente
+        const salmo = salmos.find(s => s.id == numero);
+        if (!salmo) throw new Error("Salmo não encontrado");
 
-        // Define os elementos HTML
-        document.getElementById("salmo-titulo").textContent = `Salmo ${numero}`;
-        document.getElementById("salmo-titulo-principal").textContent = linhas[0];
-        document.getElementById("salmo-titulo-original").textContent = linhas.at(-1).replace(/[()]/g, ""); // Remove parênteses
-        document.getElementById("salmo-letra").textContent = linhas.slice(1, -1).join("\n");
+        // Atualiza os elementos HTML com os dados do JSON
+        document.getElementById("salmo-titulo").textContent = `Salmo ${salmo.id}`;
+        document.getElementById("salmo-titulo-principal").textContent = salmo.titulo;
+        document.getElementById("salmo-titulo-original").textContent = salmo.titulo_original;
+        document.getElementById("salmo-letra").textContent = salmo.texto;
 
     } catch (error) {
         document.getElementById("salmo-titulo").textContent = "Erro ao carregar o Salmo";
+        console.error(error);
     }
 }
 
