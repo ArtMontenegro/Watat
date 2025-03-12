@@ -27,7 +27,10 @@ async function carregarSalmo() {
         // Atualiza os elementos HTML com os dados do JSON
         document.getElementById("salmo-titulo").textContent = `Salmo ${salmo.id}`;
         document.getElementById("salmo-titulo-principal").textContent = salmo.titulo;
-        document.getElementById("salmo-titulo-original").textContent = salmo.titulo_original;
+        
+        // Se o título original estiver vazio, insere uma quebra de linha
+        document.getElementById("salmo-titulo-original").innerHTML = salmo.titulo_original ? salmo.titulo_original : "<br>";
+
         document.getElementById("salmo-letra").textContent = salmo.texto;
 
     } catch (error) {
