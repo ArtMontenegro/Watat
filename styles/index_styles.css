@@ -2,22 +2,34 @@ body {
     background-color: rgb(201, 192, 174);
 }
 h1 {
-    color: rgb(110, 81, 83); font-style: oblique; text-align: center;
+    color: rgb(110, 81, 83);
+    font-style: oblique;
+    text-align: center;
 }
 h2, p {
-    font-style: oblique; text-align: center;font-size: large;
+    font-style: oblique;
+    text-align: center;
+    font-size: large;
 }
 pre {
-    background-color: rgb(81, 110, 110); border: 10px solid rgb(81, 110, 110); border-radius: 10px; padding: 10px;
+    background-color: rgb(81, 110, 110);
+    border: 10px solid rgb(81, 110, 110);
+    border-radius: 10px; padding: 10px;
 }
 img {
-    margin: auto; display: block; border: 3px solid rgb(81, 110, 110); border-radius: 10px;
+    margin: auto;
+    display: block;
+    border: 3px solid rgb(81, 110, 110);
+    border-radius: 10px;
 }
 iframe {
     margin: auto;
+    height: auto;
+    width: auto;
 }
 table {
-    width: 100%; background-color: rgb(223, 195, 161);
+    width: 100%;
+    background-color: rgb(223, 195, 161);
 }
 tr {
     color: rgb(81, 110, 110);
@@ -44,7 +56,8 @@ li a:hover {
 }
 .familia-pastor {
     background-color: rgb(81, 110, 110);
-    border: 3px solid rgb(81, 110, 110); border-radius: 10px;
+    border: 3px solid rgb(81, 110, 110);
+    border-radius: 10px;
 }
 table, th, td {
   border: 1px solid black;
