@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saltério Reformado</title>
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
     <div class="header">
-        <img src="/assets/img.webp" alt="icon salterio">
+        
         <p>Saltério Reformado</p>
         <div class="headerButtons">
-            <div class="headerButton"><img src="/data/search.png"></div>
-            <div class="headerButton"><img src="/data/dots.png"></div>
+            <div class="search-container">
+                <div id="search-button">
+                    <img src="assets/search.png" alt="Buscar">
+                </div>
+                <input type="text" id="search-box" placeholder="Buscar Salmo...">
+            </div>
+            
+            <div id="menu-button" class="headerButton"><img src="assets/dots.png"></div>
+</div>
         </div>
     </div>
 
-    <main class="salmos-container"></main> <!-- Aqui os Salmos serão gerados -->
+    <main>
+        <div class="salmos-container"></div> <!-- Container para os Salmos -->
+    </main>
 
-    <script src="script.js"></script> <!-- Chama o JavaScript -->
+    <script src="js/index.js"></script> <!-- Chama o JavaScript -->
+    <script src="js/ecmas.js"></script> <!-- Chama o JavaScript -->
 </body>
 </html>

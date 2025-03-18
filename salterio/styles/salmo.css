@@ -1,0 +1,30 @@
+/* Theme Name: Salmo */
+.salmo-content {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.titulo-original {
+    font-style: italic;
+    color: #555;
+}
+
+pre {
+    text-align: left;
+    white-space: pre-wrap;
+    font-size: 1.2em;
+}
+
+.back-button {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: white;
+    background: #007969;
+    padding: 8px 15px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

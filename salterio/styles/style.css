@@ -1,0 +1,130 @@
+/* Theme Name: Style */
+
+/* 
+=============================================
+🔹 Reset global: Remove margens e paddings padrão
+    e usa box-sizing para facilitar o layout
+=============================================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* 
+=============================================
+🔹 Corpo da página: Define altura total e cor de fundo
+=============================================
+*/
+body { 
+    height: 100vh;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+=============================================
+🔹 Cabeçalho: Organiza os elementos do topo 
+=============================================
+*/
+.header {
+    display: flex;
+    align-items: center;  /* Alinha os itens verticalmente */
+    justify-content: space-between; /* Distribui os itens */
+    background-color: #007969; /* Cor de fundo */
+    color: #fff; /* Texto branco */
+    padding: 10px 20px; /* Espaçamento interno */
+    position: relative; /* Mantém os elementos na posição correta */
+}
+
+/* Ícone do cabeçalho */
+.header img {
+    height: 4em; /* Define um tamanho fixo para o ícone */
+}
+
+/* Texto do título no cabeçalho */
+.header p {
+
+    flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
+    text-align: center; /* Centraliza o texto */
+    font-size: 2em; /* Define o tamanho da fonte */
+    font-weight: bold; /* Deixa o texto em negrito */
+}
+
+/* 
+=============================================
+🔹 Botões do cabeçalho
+=============================================
+*/
+.headerButtons {
+    display: flex;
+    position: absolute;
+    right: 20px; /* Mantém os botões à direita */
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+/* Cada botão do cabeçalho */
+.headerButton {
+    width: 30px; /* Define largura do botão */
+    height: 30px; /* Define altura do botão */
+    display: flex;
+    align-items: center; /* Centraliza o ícone */
+    justify-content: center;
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
+
+/* Ícones dentro dos botões */
+.headerButton img, #search-button img {
+    width: 100%; /* Faz o ícone ocupar todo o botão */
+    height: auto; /* Mantém a proporção */
+    filter: invert(100%); /* Deixa o ícone branco */
+}
+
+/* 
+=============================================
+🔹 Botão de pesquisa e animação
+=============================================
+*/
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Botão de pesquisa */
+#search-button {
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+/* Caixa de pesquisa oculta */
+#search-box {
+    position: absolute;
+    right: 0;
+    width: 0;
+    opacity: 0;
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    transition: width 0.3s ease-out, opacity 0.3s ease-out;
+    pointer-events: none; /* Impede que o mouse interaja quando oculto */
+}
+
+/* Quando visível, a caixa cresce */
+#search-box.search-visible {
+    width: 200px;
+    opacity: 1;
+    right: 35px; /* Sai do ícone de busca */
+    pointer-events: auto; /* Permite interação quando visível */
+}
