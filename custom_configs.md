@@ -1,5 +1,6 @@
 # Para ~/.bashrc
 
+```
 function customize_aliases {
 
 	alias ac="ant compile"
@@ -35,8 +36,14 @@ cl() {
 	cd "$1" && ls -la -A -h --group-directories-first
 }
 
+cdw() {
+	cd ~/dev/projects/Watat && ls -la -A -h --group-directories-first
+}
+```
+
 # Para ~/.gitconfig
 
+```
 [alias]
 	br = branch
 	ci = commit
@@ -81,3 +88,4 @@ cl() {
 	rebase = true
 [push]
 	default = matching
+```
