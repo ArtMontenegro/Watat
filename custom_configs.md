@@ -1,6 +1,12 @@
 # Para ~/.bashrc
+<<<<<<< HEAD
 
+<<<<<<< HEAD
 ```
+=======
+=======
+>>>>>>> 0814357 (added custom_configs.md)
+>>>>>>> 8bd6ab2 (added custom_configs.md)
 function customize_aliases {
 
 	alias ac="ant compile"
@@ -67,8 +73,14 @@ function customize_prompt {
 ```
 
 # Para ~/.gitconfig
+<<<<<<< HEAD
 
+<<<<<<< HEAD
 ```
+=======
+=======
+>>>>>>> 0814357 (added custom_configs.md)
+>>>>>>> 8bd6ab2 (added custom_configs.md)
 [alias]
 	br = branch
 	ci = commit
