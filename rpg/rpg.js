@@ -16,7 +16,24 @@ const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
-const weapons = [];
+const weapons = [
+    {
+      name: "stick",
+      power: 5
+    },
+    {
+      name: "dagger",
+      power: 30
+    },
+    {
+      name: "claw hammer",
+      power: 50
+    },
+    {
+      name: "sword",
+      power: 100
+    }
+  ];
 const locations = [
   {
     name: "town square",
