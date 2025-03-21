@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Yeshua</title>
+    <link rel="icon" type="image/x-icon" href="favicon (1).jpeg">
+   
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(32, 35, 75);
+        }
+        .container {
+            width: 50%;
+            margin: 200px auto;
+            background: #36739c;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+       
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+        }
+        .cart-items {
+            margin-top: 20px;
+            min-height: 100px;
+            border: 1px dashed #ddd;
+            padding: 20px;
+            background: #90d6ff;
+            font-size: 16px;
+            color: #333;
+        }
+        .checkout {
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .checkout:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>SHOPPING CART</h2>
+        <div class="cart-items">Seu carrinho está vazio.</div>
+        <button class="checkout" onclick="finalizarCompra()">Finalizar Compra</button>
+    
+    </div>
+     
+    <div class="container">
+        
+    </div>
+
+   
+   <script>
+        function finalizarCompra() {
+            alert("Compra finalizada! Obrigado por comprar na Loja Yeshua.");
+            window.location.href = "file:///home/me/dev/projects/Watat/Paulinho/roupas_yeshua.html"; 
+        }
+    </script>
+</body>
+</html>

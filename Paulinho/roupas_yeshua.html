@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Roupas Yeshua</title>
+    <title>yeshuas's clothes</title>
+    <link rel="icon" type="image/x-icon" href="favicon (1).jpeg">
+    
     <style>
         * {
             margin: 0;
@@ -105,12 +107,28 @@ body {
 .cart-button img {
   width: 50px;
   height: 50px;
-}
-
-    </style>
+  }
+  
+  .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            font-size: 14px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+} 
+  
+   </style>
 </head>
 <body>
-    <header style="font-family: georgia;">ROUPAS YESHUA</header>
+    <header style="Playfair Display"> <b>YESHUA'S CLOTHES</b></header>
     <div class="container">
         <div class="intro">
             <p>Camisas com o propósito de engajar a moda gospel</p>
@@ -186,19 +204,47 @@ body {
     </footer>
     
     <script>
-        function adicionarAoCarrinho(nome, preco, imagem) {
-            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-            carrinho.push({ nome, preco, imagem });
-            localStorage.setItem("carrinho", JSON.stringify(carrinho));
-            alert("Produto adicionado ao carrinho!");
-        }
-    </script>
+      
+      function atualizarCarrinho() {
+          let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+          let contador = document.getElementById("cart-count");
+  
+        
+          if (carrinho.length > 0) {
+              contador.textContent = carrinho.length;
+              contador.style.display = "flex";
+          } else {
+          
+              contador.style.display = "none";
+          }
+      }
+  
+
+      function adicionarAoCarrinho(nome, preco, imagem) {
+          
+          let carrinho = [];
+          carrinho.push({ nome, preco, imagem });
+          localStorage.setItem("carrinho", JSON.stringify(carrinho));
+          alert("Produto adicionado ao carrinho!");
+          atualizarCarrinho();
+      }
+  
+      
+      document.addEventListener("DOMContentLoaded", () => {
+          
+          localStorage.setItem("carrinho", JSON.stringify([]));
+  
+         atualizarCarrinho();
+      });
+  </script>
+  
  
  <div class="cart-button">
     <img src="carrinho.jpg" alt="Carrinho de Compras" />
+    <span id="cart-count" class="cart-badge">0</span>
   </div>
 
-  <a href="/home/me/dev/projects/Watat/Paulinho/carrinho.html" target="blank">
+  <a href="/home/me/dev/projects/Watat/Paulinho/carrinho.html"> 
     <div class="cart-button">
       <img src="carrinho.jpg" alt="Carrinho de Compras" />
     </div>
@@ -211,3 +257,41 @@ body {
 
 
 
+<!---->
+<script>
+        
+  function atualizarCarrinho() {
+      let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+      let contador = document.getElementById("cart-count");
+      if (carrinho.length > 0) {
+          contador.textContent = carrinho.length;
+          contador.style.display = "flex";
+      } else {
+        contador.textContent = "0";
+        contador.style.display = "0";
+      }
+  }
+  
+  
+  
+  
+  function adicionarAoCarrinho(nome, preco, imagem) {
+      let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+     
+      if (carrinho.length === 0) {
+      localStorage.setItem("carrinho", JSON.stringify([]));
+  }
+
+      carrinho.push({ nome, preco, imagem });
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+      alert("Produto adicionado ao carrinho!");
+      atualizarCarrinho();
+     
+      document.addEventListener("DOMContentLoaded", () => {
+  localStorage.setItem("carrinho", JSON.stringify([])); 
+  atualizarCarrinho();
+
+});  
+
+}
+</script> <!---->
