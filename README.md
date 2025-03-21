@@ -4,7 +4,11 @@ Watat repo for testing collaboration in basic training projects.
 
 # Como abrir o site
 
-No terminal, escreve ***docker run --name Watat -d -it -p 80:80 -v /home/me/dev/projects/Watat:/usr/local/apache2/htdocs httpd:2.4***
+No terminal, escreve:
+
+```
+docker run --name Watat -d -it -p 80:80 -v /home/me/dev/projects/Watat:/usr/local/apache2/htdocs httpd:2.4
+```
 
 Isto criará um container para navegar o repositório no teu navegador.
 
