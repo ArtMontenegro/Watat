@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="favicon (1).jpeg">
    
    <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -15,13 +15,12 @@
         }
         .container {
             width: 50%;
-            margin: 200px auto;
+            margin: 50px auto;
             background: #36739c;
-            padding: 10px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-       
         }
 
         h2 {
@@ -51,6 +50,37 @@
         }
         .checkout:hover {
             background: #45a049;
+        } 
+
+        .promo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            background: #36739c;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .promo-code {
+            width: 150px;
+            height: 30px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        p {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
         }
     </style>
 </head>
@@ -62,8 +92,10 @@
     
     </div>
      
-    <div class="container">
-        
+   
+    <div class="container 2">
+       <p>PROMOTIONAL CODE :</p> 
+       <input type="text" class="promo-code" placeholder="Enter code">
     </div>
 
    
