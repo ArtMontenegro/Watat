@@ -2,19 +2,20 @@ body {
   background-color: #0a0a23;
 }
 
-#text {
+#log {
   background-color: #0a0a23;
   color: #ffffff;
   padding: 10px;
 }
 
 #game {
-  max-width: 500px;
-  max-height: 400px;
+  max-width: 80%;
+  max-height: 80%;
   background-color: #ffffff;
   color: #ffffff;
   margin: 30px auto 0px;
   padding: 10px;
+  border: 4px groove #c70d0d;
 }
 
 #controls,
