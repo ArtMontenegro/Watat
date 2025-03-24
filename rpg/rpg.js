@@ -1,4 +1,3 @@
-let xp = 0;
 let health = 100;
 let gold = 50;
 let currentWeapon = 0;
@@ -9,8 +8,7 @@ let inventory = ["stick"];
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
-const text = document.querySelector("#text");
-const xpText = document.querySelector("#xpText");
+const log = document.querySelector("#log");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
@@ -49,8 +47,8 @@ const locations = [
   },
   {
     name: "store",
-    "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
-    "button functions": [buyHealth, buyWeapon, goTown],
+    "button text": ["Buy food (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
+    "button functions": [rest, buyWeapon, goTown],
     text: "You enter the store."
   },
   {
@@ -113,14 +111,18 @@ function goCave() {
   update(locations[2]);
 }
 
-function buyHealth() {
+function refreshStats(){
+  healthText.innerText = health;
+  goldText.innerText = gold;
+}
+
+function rest() {
   if (gold >= 10) {
     gold -= 10;
-    health += 10;
-    goldText.innerText = gold;
-    healthText.innerText = health;
+    health = 100;
+    refreshStats();
   } else {
-    text.innerText = poorText;
+    log.innerText += "\n" + poorText;
   }
 }
 
@@ -131,14 +133,14 @@ function buyWeapon() {
       currentWeapon++;
       goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
-      text.innerText = "You now have a " + newWeapon + ".";
+      log.innerText += "\nYou now have a " + newWeapon + ".";
       inventory.push(newWeapon);
-      text.innerText += " In your inventory you have: " + inventory;
+      log.innerText += "\n In your inventory you have: " + inventory;
     } else {
-      text.innerText = poorText;
+      log.innerText += "\n" + poorText;
     }
   } else {
-    text.innerText = "You already have the most powerful weapon!";
+    log.innerText += "\nYou already have the most powerful weapon!";
     button2.innerText = "Sell weapon for 15 gold";
     button2.onclick = sellWeapon;
   }
@@ -149,10 +151,10 @@ function sellWeapon() {
     gold += 15;
     goldText.innerText = gold;
     let currentWeapon = inventory.shift();
-    text.innerText = "You sold a " + currentWeapon + ".";
-    text.innerText += " In your inventory you have: " + inventory;
+    log.innerText += "\nYou sold a " + currentWeapon + ".";
+    log.innerText += "\n In your inventory you have: " + inventory;
   } else {
-    text.innerText = "Don't sell your only weapon!";
+    log.innerText += "\nDon't sell your only weapon!";
   }
 }
 
@@ -180,13 +182,13 @@ function goFight() {
 }
 
 function attack() {
-  text.innerText = "The " + monsters[fighting].name + " attacks.";
-  text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
+  log.innerText += "\nThe " + monsters[fighting].name + " attacks.";
+  log.innerText += "\n You attack it with your " + weapons[currentWeapon].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
-    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;    
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random()) + 1;    
   } else {
-    text.innerText += " You miss.";
+    log.innerText += "\n You miss.";
   }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
@@ -200,13 +202,13 @@ function attack() {
     }
   }
   if (Math.random() <= .1 && inventory.length !== 1) {
-    text.innerText += " Your " + inventory.pop() + " breaks.";
+    log.innerText += "\n Your " + inventory.pop() + " breaks.";
     currentWeapon--;
   }
 }
 
 function getMonsterAttackValue(level) {
-  const hit = (level * 5) - (Math.floor(Math.random() * xp));
+  const hit = (level * 5) - (Math.floor(Math.random()));
   console.log(hit);
   return hit > 0 ? hit : 0;
 }
@@ -216,14 +218,12 @@ function isMonsterHit() {
 }
 
 function dodge() {
-  text.innerText = "You dodge the attack from the " + monsters[fighting].name;
+  log.innerText += "\nYou dodge the attack from the " + monsters[fighting].name;
 }
 
 function defeatMonster() {
   gold += Math.floor(monsters[fighting].level * 6.7);
-  xp += monsters[fighting].level;
   goldText.innerText = gold;
-  xpText.innerText = xp;
   update(locations[4]);
 }
 
@@ -236,13 +236,11 @@ function winGame() {
 }
 
 function restart() {
-  xp = 0;
   health = 100;
   gold = 50;
   currentWeapon = 0;
   inventory = ["stick"];
   goldText.innerText = gold;
   healthText.innerText = health;
-  xpText.innerText = xp;
   goTown();
 }
