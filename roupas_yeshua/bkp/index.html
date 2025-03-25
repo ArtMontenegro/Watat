@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja Roupas Yeshua</title>
     <link rel="stylesheet" href="styles/arquivo.css">
+    <link rel="icon" type="image/x-icon" href="assets/yeshua_logo.jpeg">
 </head>
 <body>
     <header style="font-family: georgia;">ROUPAS YESHUA</header>
@@ -19,28 +20,28 @@
                 <h3>Camisa Yeshua 1</h3>
                 <p>R$ 59,90</p>
                 <p>CAMISA OVERSIZE BRANCA COM ESTAMPA VIDEIRA NAS COSTAS</p>
-                <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 1', 65,00, 'camisa1.jpeg')">Comprar</button> 
+                <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 1', 65,0o0, 'camisa1.jpeg')">Comprar</button> 
             </div>
             <div class="produto">
                 <img src="assets/camisa2.jpeg" alt="Camisa Yeshua 2">
                 <h3>Camisa Yeshua 2</h3>
                 <p>R$ 65,00</p>
                 <p>CAMISA OVERSIZE AZUL COM ESTAMPA DE POMBA "Representação do Espírito Santo" NAS COSTAS</p>
-                <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 2', 65,00, 'camisa2.jpeg')">Comprar</button>
+                <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 2', 65,0o0, 'camisa2.jpeg')">Comprar</button>
             </div>
             <div class="produto">
                 <img src="assets/camisa3.jpeg" alt="Camisa Yeshua 3">
                 <h3>Camisa Yeshua 3</h3>
                 <p>R$ 65,00</p>
                 <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
-                <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua3', 65,00, 'camisa3.jpeg')">Comprar</button>
+                <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua3', 65,0o0, 'camisa3.jpeg')">Comprar</button>
             </div>
             <div class="produto">
               <img src="assets/camisa4.jpeg" alt="Camisa Yeshua 4">
               <h3>Camisa Yeshua 4</h3>
               <p>R$ 65,00</p>
               <p>CAMISA OVERSIZE CINZA COM ESTAMPA DA NAS COSTAS</p>
-              <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 4', 65,00, 'camisa4.jpeg')">Comprar</button>  
+              <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 4', 65,0o0, 'camisa4.jpeg')">Comprar</button>  
         </div>
       
           <div class="produto">
@@ -48,7 +49,7 @@
             <h3>Camisa Yeshua 5</h3>
             <p>R$ 65,00</p>
             <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
-            <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 5', 65,00, 'camisa5.jpeg')">Comprar</button>
+            <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 5', 65, 0o0, 'camisa5.jpeg')">Comprar</button>
         </div>
          
         <div class="produto">
@@ -56,7 +57,7 @@
           <h3>Camisa Yeshua 6</h3>
           <p>R$ 65,00</p>
           <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
-          <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 6', 65,00, 'camisa6.jpeg')">Comprar</button>
+          <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 6', 65,0o0, 'camisa6.jpeg')">Comprar</button>
         </div>
          
       <div class="produto">
@@ -64,7 +65,7 @@
         <h3>Camisa Yeshua 7</h3>
         <p>R$ 65,00</p>
         <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
-        <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 7', 65,00, 'camisa7.jpeg')">Comprar</button>
+        <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 7', 65,0o0, 'camisa7.jpeg')">Comprar</button>
     </div>
     
     <div class="produto">
@@ -72,7 +73,7 @@
       <h3>Camisa Yeshua 8</h3>
       <p>R$ 65,00</p>
       <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
-      <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 8', 65,00, 'camisa8.jpeg')">Comprar</button>
+      <button class="btn-comprar" onclick="adicionarAoCarrinho('Camisa Yeshua 8', 65,0o0, 'camisa8.jpeg')">Comprar</button>
     </div>
 
           </div>
@@ -83,13 +84,39 @@
     </footer>
     
     <script>
-        function adicionarAoCarrinho(nome, preco, imagem) {
-            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-            carrinho.push({ nome, preco, imagem });
-            localStorage.setItem("carrinho", JSON.stringify(carrinho));
-            alert("Produto adicionado ao carrinho!");
-        }
-    </script>
+      
+      function atualizarCarrinho() {
+          let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+          let contador = document.getElementById("cart-count");
+  
+        
+          if (carrinho.length > 0) {
+              contador.textContent = carrinho.length;
+              contador.style.display = "flex";
+          } else {
+          
+              contador.style.display = "none";
+          }
+      }
+  
+
+      function adicionarAoCarrinho(nome, preco, imagem) {
+          
+          let carrinho = [];
+          carrinho.push({ nome, preco, imagem });
+          localStorage.setItem("carrinho", JSON.stringify(carrinho));
+          alert("Produto adicionado ao carrinho!");
+          atualizarCarrinho();
+      }
+  
+      
+      document.addEventListener("DOMContentLoaded", () => {
+          
+          localStorage.setItem("carrinho", JSON.stringify([]));
+  
+         atualizarCarrinho();
+      });
+  </script>
  
  <div class="cart-button">
     <img src="assets/carrinho.jpg" alt="Carrinho de Compras" />
