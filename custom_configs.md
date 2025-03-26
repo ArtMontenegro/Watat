@@ -39,6 +39,24 @@ cl() {
 cdw() {
 	cd ~/dev/projects/Watat && ls -la -A -h --group-directories-first
 }
+
+function customize_prompt {
+	PS1="\[\e]0;\w\a\]\n\[\e[91m\]\A, \d\[\n\e[92m\]\u@\h \[\e[33m\]\w\[\e[0m\] \$(parse_git_current_branch_with_parentheses)\n\$ "
+	
+	# old prompt
+	#PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \$(parse_git_current_branch_with_parentheses)\n\$ "
+	#
+	#broken find ip
+	#PS1_CMD1='$(ip route get 1.1.1.1 | awk -F"src " '"'"'NR == 1{ split($2, a," ");print a[1]}'"'"')';
+	#
+	# https://forums.fedoraforum.org/showthread.php?326174-stop-konsole-highlighting-pasted-text
+	# https://newbedev.com/remote-ssh-commands-bash-bind-warning-line-editing-not-enabled
+	#
+	#if [ -t 1 ]
+	#then
+	#	bind "set enable-bracketed-paste off"
+	#fi
+}
 ```
 
 # Para ~/.gitconfig
