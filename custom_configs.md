@@ -46,10 +46,14 @@ function customize_prompt {
 	--> PROMPT_COMMAND='branch_name=$(git rev-parse --is-inside-work-tree &>/dev/null && git branch --show-current); export PS1="\[\033[0;92m\]\u@\h:\w\[\033[0;33m\]${branch_name:+ ($branch_name)}\[\033[0;92m\]\$\[\033[0m\] "'
 
 	
-	# old prompt
+	# other prompts
 	#PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \$(parse_git_current_branch_with_parentheses)\n\$ "
+	#PS1="\[\e]0;\w\a\]\n\[\e[91m\]\A, \d\[\n\e[92m\]\u@\h \[\e[33m\]\w\[\e[0m\] \$(parse_git_current_branch_with_parentheses)\n\$ "
 	#
-	#broken find ip
+	# ivisson
+	#PROMPT_COMMAND='branch_name=$(git rev-parse --is-inside-work-tree &>/dev/null && git branch --show-current); export PS1="\[\033[0;92m\]\u@\h:\w\[\033[0;33m\]${branch_name:+ ($branch_name)}\[\033[0;92m\]\$\[\033[0m\] "'
+	#
+	# broken find ip
 	#PS1_CMD1='$(ip route get 1.1.1.1 | awk -F"src " '"'"'NR == 1{ split($2, a," ");print a[1]}'"'"')';
 	#
 	# https://forums.fedoraforum.org/showthread.php?326174-stop-konsole-highlighting-pasted-text
