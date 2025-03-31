@@ -1,125 +1,125 @@
 let HP = 100;
 let playerCondition;
-let gold = 0;
+let silver = 0;
 let currentWeaponIndex = 0;
 let currentArmorIndex = 0;
 let fighting = false;
 let monsterHP;
 let monsterCondition;
 
-const button1 = document.querySelector('#button1');
-const button2 = document.querySelector('#button2');
-const button3 = document.querySelector('#button3');
-const log = document.querySelector('#log');
-const playerConditionText = document.querySelector('#playerCondition');
-const goldText = document.querySelector('#goldText');
-const monsterStats = document.querySelector('#monsterStats');
-const monsterName = document.querySelector('#monsterName');
-const monsterConditionText = document.querySelector('#monsterCondition');
+const button1 = document.getElementById('button1');
+const button2 = document.getElementById('button2');
+const button3 = document.getElementById('button3');
+const playLog = document.getElementById('playLog');
+const playerConditionText = document.getElementById('playerCondition');
+const silverText = document.getElementById('silverText');
+const monsterStats = document.getElementById('monsterStats');
+const monsterName = document.getElementById('monsterName');
+const monsterConditionText = document.getElementById('monsterCondition');
 const poor = 'You do not have enough money.';
 
 const weapons = [
-  {name: 'stick', power: 1, value: 1},
-  {name: 'dagger', power: 10, value: 5},
-  {name: 'mace', power: 20, value: 10},
-  {name: 'sword', power: 30, value: 20}
+  { name: 'stick', power: 1 },
+  { name: 'dagger', power: 5 },
+  { name: 'mace', power: 15 },
+  { name: 'sword', power: 30 }
 ];
 let currentWeapon = weapons[currentWeaponIndex];
 let arsenal = [];
 arsenal.push(currentWeapon.name);
-console.log('arsenal:');
-console.log(arsenal.join(', '));
+console.log({ arsenal });
 
 const armors = [
-  {name: 'aketon', protection: 1, value: 1},
-  {name: 'mail armor', protection: 5, value: 5},
-  {name: 'brigantine', protection: 10, value: 10},
-  {name: 'plate armor', protection: 20, value: 10},
+  { name: 'aketon', power: 1 },
+  { name: 'mail armor', power: 5 },
+  { name: 'brigantine', power: 15 },
+  { name: 'plate armor', power: 30 },
 ];
 let currentArmor = armors[currentArmorIndex];
 let armory = [];
 armory.push(currentArmor.name);
-console.log('armory:');
-console.log(armory.join(', '));
+console.log({ armory });
 
 const monsters = [
   {
-    name: 'rat',
-    HP: 5,
-    power: 2
+    name: 'raptor',
+    HP: 10,
+    power: 5
   },
   {
     name: 'beast',
     HP: 50,
-    power: 5
+    power: 20
   },
   {
-    name: 'dragon',
-    HP: 200,
-    power: 20
+    name: 'wyvern',
+    HP: 150,
+    power: 50
   }
 ];
+
+let foe = monsters[fighting];
 
 const locations = [
   {
     name: 'city gate',
-    'button text': ['Go to town square', 'Go to cave', 'Fight dragon'],
-    'button functions': [goSquare, goCave, fightDragon],
-    log: 'You are at the city gate. You see the dragon and a nearby cave.'
+    'button text': ['Go to town square', 'Go to cave', 'Fight wyvern'],
+    'button functions': [goSquare, goCave, fightWyvern],
+    playLog: 'You are at the city gate. You see the wyvern and a nearby cave.'
   },
   {
     name: 'town square',
     'button text': ['Rest', 'Go to city gate', 'Go to marketplace'],
     'button functions': [rest, goGate, goMarket],
-    log: 'You are in the town square. You see a sign that reads MARKETPLACE.'
+    playLog: 'You are in the town square. You see a sign that reads MARKETPLACE.'
   },
   {
     name: 'market',
     'button text': ['Go to weapons stand', 'Go to armor stand', 'Go to town square'],
     'button functions': [goWeapons, goArmor, goSquare],
-    log: 'You enter the marketplace. There are weapons and armor for sale.'
+    playLog: 'You enter the marketplace. There are weapons and armor for sale.'
   },
   {
     name: 'weapons stand',
     'button text': ['Buy weapon', 'Sell weapon', 'Go to market center'],
     'button functions': [buyWeapon, sellWeapon, goMarket],
-    log: 'You find the weapons stand.'
+    playLog: 'You find the weapons stand.'
   },
   {
     name: 'armors stand',
     'button text': ['Buy armor', 'sell armor', 'Go to market center'],
     'button functions': [buyArmor, sellArmor, goMarket],
-    log: 'You find the armor stand.'
+    playLog: 'You find the armor stand.'
   },
   {
     name: 'cave',
-    'button text': ['Fight rat', 'Fight beast', 'Go to city gate'],
-    'button functions': [fightRat, fightBeast, goGate],
-    log: 'You enter the cave. You see some monsters.'
+    'button text': ['Fight raptor', 'Fight beast', 'Go to city gate'],
+    'button functions': [fightRaptor, fightBeast, goGate],
+    playLog: 'You enter the cave and see some monsters.'
   },
   {
     name: 'fight',
     'button text': ['Attack', 'Dodge', 'Run'],
-    'button functions': [attack, dodge, goGate],
-    log: 'You are fighting a monster.'
+    'button functions': [combat, dodge, goGate],
+    playLog: 'You are fighting a monster.'
   },
   {
     name: 'kill monster',
-    'button text': ['Fight rat', 'Fight beast', 'Go to city gate'],
-    'button functions': [fightRat, fightBeast, goGate],
-    log: 'The monster screams as it dies. You earn gold.'
+    'button text': ['Fight raptor', 'Fight beast', 'Go to city gate'],
+    'button functions': [fightRaptor, fightBeast, goGate],
+    playLog: 'The monster screams as it dies. You earn silver.'
   },
   {
     name: 'game over',
     'button text': ['REPLAY?', 'REPLAY?', 'REPLAY?'],
     'button functions': [restart, restart, restart],
-    log: 'You die. &#x2620 GAME OVER;'
+    playLog: 'You die &#x2620. GAME OVER;'
   },
-  { 
-    name: 'win', 
-    'button text': ['REPLAY?', 'REPLAY?', 'REPLAY?'], 
-    'button functions': [restart, restart, restart], 
-    log: 'You defeat the dragon! YOU WIN THE GAME! &#x1F389;' 
+  {
+    name: 'win',
+    'button text': ['REPLAY?', 'REPLAY?', 'REPLAY?'],
+    'button functions': [restart, restart, restart],
+    playLog: 'You defeat the wyvern! YOU WIN THE GAME! &#x1F389;'
   }
 ];
 
@@ -138,11 +138,11 @@ function getPlayerCondition() {
 
 function getMonsterCondition() {
   if (fighting !== false) {
-    if (monsterHP === monsters[fighting].HP) {
+    if (monsterHP === foe.HP) {
       monsterCondition = 'great';
-    } else if (monsterHP > monsters[fighting].HP * (2 / 3)) {
+    } else if (monsterHP > foe.HP * (2 / 3)) {
       monsterCondition = 'fine';
-    } else if (monsterHP > monsters[fighting].HP / 3) {
+    } else if (monsterHP > foe.HP / 3) {
       monsterCondition = 'tired';
     } else {
       monsterCondition = 'wounded';
@@ -151,8 +151,11 @@ function getMonsterCondition() {
   monsterConditionText.innerText = monsterCondition;
 }
 
-function refreshStats(){
-  goldText.innerText = gold;
+function refreshStats() {
+  silverText.innerText = silver;
+  currentWeapon = weapons[currentWeaponIndex];
+  currentArmor = armors[currentArmorIndex];
+  foe = monsters[fighting];
   getPlayerCondition();
   getMonsterCondition();
 }
@@ -165,7 +168,7 @@ function update(location) {
   button1.onclick = location['button functions'][0];
   button2.onclick = location['button functions'][1];
   button3.onclick = location['button functions'][2];
-  log.innerHTML = location.log;
+  playLog.innerHTML = location.playLog;
 }
 
 refreshStats();
@@ -199,27 +202,24 @@ function goCave() {
 function rest() {
   HP = 100;
   refreshStats();
-  log.innerText += '\n You rested and are fully recovered.';
+  playLog.innerText += '\n You rested and are fully recovered.';
 }
 
 function buyWeapon() {
   if (currentWeaponIndex < weapons.length - 1) {
-    if (gold >= weapons[currentWeaponIndex + 1].value) {
+    if (silver >= weapons[currentWeaponIndex + 1].power) {
       currentWeaponIndex++;
-      gold -= currentWeapon.value;
-      arsenal.push(currentWeapon.name);
-      log.innerText = `You now have a ${currentWeapon.name}.`;
+      silver -= weapons[currentWeaponIndex].power;
       refreshStats();
-      log.innerText += `\n In your arsenal you have: ${arsenal.join(', ')}`;
-      console.log('arsenal:');
-      console.log(arsenal.join(', '));
-      console.log('current weapon:');
-      console.log(currentWeapon.name);
+      arsenal.push(currentWeapon.name);
+      playLog.innerText = `You now have a ${currentWeapon.name}.`;
+      playLog.innerText += `\n In your arsenal you have: ${arsenal.join(', ')}.`;
+      console.log({ arsenal, currentWeapon });
     } else {
-      log.innerText = poor;
+      playLog.innerText = poor;
     }
   } else {
-    log.innerText = 'You already have the most powerful weapon.';
+    playLog.innerText = 'You already have the most powerful weapon.';
     button2.innerText = 'Sell old weapon';
     button2.onclick = sellWeapon;
   }
@@ -228,65 +228,52 @@ function buyWeapon() {
 function sellWeapon() {
   if (arsenal.length > 1) {
     let soldWeaponName = arsenal.shift();
-    log.innerText = `You sold a ${soldWeaponName}.`;
+    playLog.innerText = `You sold a ${soldWeaponName}.`;
     let soldWeapon = weapons.find((weapon) => weapon.name === soldWeaponName);
-    gold += soldWeapon.value;
+    silver += soldWeapon.power;
     refreshStats();
-    log.innerText += `\n In your arsenal you have: ${arsenal.join(', ')}`;
-    console.log('arsenal:');
-      console.log(arsenal.join(', '));
-      console.log('current weapon:');
-      console.log(currentWeapon.name);
-      console.log('sold weapon:');
-      console.log(soldWeapon);
+    playLog.innerText += `\n In your arsenal you have: ${arsenal.join(', ')}.`;
+    console.log({ arsenal, currentWeapon, soldWeapon });
   } else {
-    log.innerText = 'Don\'t sell your only weapon!';
+    playLog.innerText = `Don't sell your only weapon!`;
   }
 }
 
-function buyArmor(){
+function buyArmor() {
   if (currentArmorIndex < armors.length - 1) {
-    if (gold >= armors[currentArmorIndex + 1].value) {
+    if (silver >= armors[currentArmorIndex + 1].power) {
       currentArmorIndex++;
-      gold -= currentArmor.value;
-      armory.push(currentArmor.name);
-      log.innerText = `You now have a ${currentArmor.name}.`;
+      silver -= armors[currentArmorIndex].power;
       refreshStats();
-      log.innerText += `\n In your armory you have: ${armory.join(', ')}`;
-      console.log('armory:');
-      console.log(armory.join(', '));
-      console.log('current armor:');
-      console.log(currentArmor.name);
+      armory.push(currentArmor.name);
+      playLog.innerText = `You now have a ${currentArmor.name}.`;
+      playLog.innerText += `\n In your armory you have: ${armory.join(', ')}.`;
+      console.log({ armory, currentArmor });
     } else {
-      log.innerText = poor;
+      playLog.innerText = poor;
     }
   } else {
-    log.innerText = 'You already have the most powerful armor.';
+    playLog.innerText = 'You already have the most powerful armor.';
     button2.innerText = 'Sell old armor';
     button2.onclick = sellArmor;
   }
 }
 
-function sellArmor(){
+function sellArmor() {
   if (armory.length > 1) {
     let soldArmorName = armory.shift();
-    log.innerText = 'You sold a ' + soldArmorName + '.';
+    playLog.innerText = `You sold a ${soldArmorName}.`;
     let soldArmor = armors.find((armor) => armor.name === soldArmorName);
-    gold += soldArmor.value;
+    silver += soldArmor.power;
     refreshStats();
-    log.innerText += '\n In your armory you have: ' + armory.join(', ');
-    console.log('armory:');
-      console.log(armory.join(', '));
-      console.log('current armor:');
-      console.log(currentArmor.name);
-      console.log('sold armor:');
-      console.log(soldArmor);
+    playLog.innerText += `\n In your armory you have: ${armory.join(', ')}.`;
+    console.log({ armory, currentArmor, soldArmor });
   } else {
-    log.innerText = 'Don\'t sell your only armor!';
+    playLog.innerText = `Don't sell your only armor!`;
   }
 }
 
-function fightRat() {
+function fightRaptor() {
   fighting = 0;
   goFight();
 }
@@ -296,49 +283,60 @@ function fightBeast() {
   goFight();
 }
 
-function fightDragon() {
+function fightWyvern() {
   fighting = 2;
   goFight();
 }
 
 function goFight() {
   update(locations[6]);
-  monsterHP = monsters[fighting].HP;
+  foe = monsters[fighting];
+  monsterHP = foe.HP;
   monsterStats.style.display = 'flex';
-  monsterName.innerText = monsters[fighting].name;
+  monsterName.innerText = foe.name;
   refreshStats();
 }
 
-function attack() {
-  let monsterHit = (monsters[fighting].power * 2) - (monsters[fighting].power * Math.floor(Math.random() * 3));
-  monsterHit -= currentArmor.protection;
-  console.log('monsterHit:');
-  console.log(monsterHit);
-  log.innerText = 'The ' + monsters[fighting].name + ' attacks.';
+function combat() {
+  playLog.innerText = `The ${foe.name} attacks.`;
+  let monsterHit = foe.power;
+
+  // critFail: 1/5 chance that foe deals half damage
+  let failNum = Math.floor(Math.random() * 6);
+  let critFail = failNum === 5;
+  if (critFail === true) {
+    monsterHit /= 2;
+    playLog.innerText += `\n The attack failed critically.`;
+  }
+  // critFail === 0 ? monsterHit /= 2 : monsterHit = monsterHit;
+
+  // remove armor protection points from monsterHit
+  monsterHit -= currentArmor.power;
+
+  // add text if foe misses
   if (monsterHit <= 0) {
-    log.innerText += '\n The ' + monsters[fighting].name + ' misses.';
+    playLog.innerText += `\n The ${foe.name} misses.`;
   } else {
     HP -= monsterHit;
-    console.log('HP: ');
-    console.log(HP);
-    log.innerText += 'You take damage';
+    playLog.innerText += '\n You take damage.';
   }
+
+  // check if player lost, if attack if alive
   if (HP <= 0) {
     lose();
   } else {
-    log.innerText += '\n You attack it with your ' + currentWeapon.name + '.';
+    playLog.innerText += `\n You attack it with your ${currentWeapon.name}.`;
     let playerHit = currentWeapon.power;
-    if (Math.random() > .9 === true) {
+
+    // 1/5 chance of player crit
+    if (Math.random() >= .8 === true) {
       playerHit *= 2;
       monsterHP -= playerHit;
-      log.innerText += ' It\'s a critical hit!';
+      playLog.innerText += ` It's a critical hit!`;
     } else {
       monsterHP -= playerHit;
     }
-    console.log('player hit:');
-    console.log(playerHit);
-    console.log('monster HP');
-    console.log(monsterHP);
+    console.log({ failNum, monsterHit, HP, playerHit, monsterHP });
     refreshStats();
     if (monsterHP <= 0) {
       if (fighting === 2) {
@@ -351,11 +349,11 @@ function attack() {
 }
 
 function dodge() {
-  log.innerText = 'You dodge the attack from the ' + monsters[fighting].name;
+  playLog.innerText = `You dodge the ${foe.name}'s attack.`;
 }
 
 function defeatMonster() {
-  gold += monsters[fighting].power;
+  silver += Math.floor(foe.power / 2);
   refreshStats();
   update(locations[7]);
 }
@@ -370,17 +368,15 @@ function winGame() {
 
 function restart() {
   HP = 100;
-  gold = 0;
+  silver = 0;
   currentWeaponIndex = 0;
   currentArmorIndex = 0;
   arsenal = [];
   arsenal.push(currentWeapon);
-  console.log('arsenal:');
-  console.log(arsenal.join(', '));
+  console.log({ arsenal });
   armory = [];
   armory.push(currentArmor.name);
-  console.log('armory:');
-  console.log(armory.join(', '));
+  console.log({ armory });
   refreshStats();
   goGate();
 }

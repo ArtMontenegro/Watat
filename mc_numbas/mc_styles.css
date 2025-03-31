@@ -1,36 +1,48 @@
+* {
+    font-family: Georgia;
+}
+
 body {
     background-color: gold;
-    font-family: Georgia;
     font-size: 100%;
 }
+
 h1 {
     font-size: 2.5em;
     color: #dd0000;
     text-align: center;
 }
+
 h2 {
     color: #dd0000;
     font-size: 2em;
     text-align: center;
 }
+
 p {
     color: #dd0000;
     border: 3px solid #000099;
     padding: 5px;
 }
-a:link, a:visited {
+
+a:link,
+a:visited {
     background-color: #dd0000;
     color: gold;
     padding: 1em;
     text-align: center;
     display: inline-block;
 }
+
 pre {
     background-color: #dd0000;
 }
-header, footer {
+
+header,
+footer {
     font-family: Trebuchet MS;
 }
+
 img {
     max-width: 40%;
     height: auto;
@@ -38,6 +50,7 @@ img {
     border: 5px solid #dd0000;
     padding: 5px;
 }
+
 iframe {
     max-width: 90%;
     height: auto;
@@ -45,25 +58,46 @@ iframe {
     border: 3px solid #dd0000;
     padding: 5px;
 }
+
+input {
+    width: 50px;
+}
+
 table {
-    font-family: Georgia;
     border: 2px double #dd0000;
     border-collapse: collapse;
     width: 100%;
 }
+
 th {
     border: 1px solid #000099;
     text-align: center;
     padding: 8px;
 }
+
 td {
     border: 1px solid #000099;
     text-align: left;
     padding: 8px;
 }
-tr:nth-child(even) /* This highlights the even rows */ {
+
+tr:nth-child(even)
+
+/* This highlights the even rows */
+    {
     background-color: #dd0000;
 }
+
 td:hover {
     background-color: #55aaff;
+}
+
+#info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.character, .height, .inverted {
+    display: flex;
+    justify-content: center;
 }

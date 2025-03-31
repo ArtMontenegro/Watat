@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="rpg.css">
-    <link rel="shortcut icon" href="../mc_numbas/assets/port_favicon.ico" type="image/x-icon">
-    <title>RPG</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  </head>
-  <body>
-    <div id="game">
-      <div id="stats">
-        <span class="stat">Condition: <strong><span id="playerCondition"></span></strong></span>
-        <span class="stat">Gold: <strong><span id="goldText"></span></strong></span>
-      </div>
-      <div id="controls">
-        <button id="button1"></button>
-        <button id="button2"></button>
-        <button id="button3"></button>
-      </div>
-      <div id="monsterStats">
-        <span class="stat">Monster: <strong><span id="monsterName"></span></strong></span>
-        <span class="stat">Condition: <strong><span id="monsterCondition"></span></strong></span>
-      </div>
-      <div id="log">
-        You must defeat the dragon that is preventing people from leaving the town. You are at the city gate. Where do you want to go? Use the buttons above.
-      </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="rpg.css">
+  <link rel="shortcut icon" href="../mc_numbas/assets/port_favicon.ico" type="image/x-icon">
+  <title>RPG</title>
+</head>
+
+<body>
+  <div id="game">
+    <div id="stats">
+      <span class="stat">Condition: <strong><span id="playerCondition"></span></strong></span>
+      <span class="stat">Silver: <strong><span id="silverText"></span></strong></span>
     </div>
-    <script src="rpg.js"></script>
-  </body>
+    <div id="controls">
+      <button id="button1"></button>
+      <button id="button2"></button>
+      <button id="button3"></button>
+    </div>
+    <div id="monsterStats">
+      <span class="stat">Monster: <strong><span id="monsterName"></span></strong></span>
+      <span class="stat">Condition: <strong><span id="monsterCondition"></span></strong></span>
+    </div>
+    <div id="playLog"></div>
+  </div>
+  <script src="rpg.js"></script>
+</body>
+
 </html>

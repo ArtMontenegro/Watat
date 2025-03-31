@@ -4,26 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>hello</title>
+  <title>Pyramid!</title>
   <link rel="icon" type="image/x-icon" href="assets/mc_favicon.ico">
-  <link rel="stylesheet" href="styles/mc_styles.css">
+  <link rel="stylesheet" href="mc_styles.css">
 </head>
 
 <body style="background-image: url('assets/mcdonalds.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;">
-    <p>Hello and welcome!</p>
-    <hr>
-    <pre id="pyramid"></pre>
+  <p>Hello and welcome!</p>
+  <div id="info">
+    <div class="character"><label>Character: </label>
+      <input required type="text" id="characterInput" name="character" value="#" placeholder="#">
+    </div>
+    <div class="height">
+      <label>Height: </label>
+      <input required type="number" id="heightInput" name="height" value="8" placeholder="8">
+    </div>
+    <div class="inverted">
+      <label>Inverted: </label>
+      <input type="checkbox" name="inverted" id="invertedInput">
+    </div>
     <button onclick="build()">Build!</button>
-    <p id="pyramid" style="margin: auto; text-align: left;"></p>
-    <script src="script/pyramid.js"></script>
-    <hr>
-    <a href="/index.html">Watat</a>
-    <a href="index.html">Art Index</a>
-    <a href="numbas.html">Numbas</a>
-    <a href="new_testament.html">New Testament</a>
+  </div>
+  <pre id="pyramid" style="text-align: center;"></pre>
+  <p id="pyramid" style="margin: auto; border: none; text-align: left;"></p>
+  <script src="script/pyramid.js"></script>
+  <hr>
+  <a href="/index.html">Watat</a>
+  <a href="index.html">Art Index</a>
+  <a href="numbas.html">Numbas</a>
+  <a href="new_testament.html">New Testament</a>
 </body>
 
 </html>
