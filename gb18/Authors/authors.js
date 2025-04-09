@@ -5,7 +5,7 @@ let startingIndex = 0;
 let endingIndex = 8;
 let authorDataArr = [];
 
-fetch('https://cdn.freecodecamp.org/curriculum/news-author-page/authors.json')
+fetch('./authors_bio.json')
   .then((res) => res.json())
   .then((data) => {
     authorDataArr = data;
@@ -22,8 +22,7 @@ const fetchMoreAuthors = () => {
   displayAuthors(authorDataArr.slice(startingIndex, endingIndex));
   if (authorDataArr.length <= endingIndex) {
     loadMoreBtn.disabled = true;
-
-    loadMoreBtn.style.cursor = "not-allowed"
+loadMoreBtn.style.cursor = "not-allowed"
     loadMoreBtn.textContent = 'No more data to load';
   }
 };
