@@ -1,18 +1,279 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<title>    </title>
+<html lang="pt-BR">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yeshuas's clothes</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon (1).jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            background-color: rgb(32, 35, 75);
+
+        }
+
+        header {
+            background-color: #36739c;
+            color: white;
+            padding: 20px;
+            font-size: 29px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 27px auto;
+        }
+
+        .intro p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .produtos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .produto {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .produto img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .produto h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        .produto p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        footer {
+            background-color: #36739c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-comprar {
+            background-color: #36739c;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .intro {
+            font-size: 18px;
+            font-family: "Georgia", serif;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart-button {
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .cart-button img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            font-size: 14px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
-
 <body>
+    <header style="font-family: 'Playfair Display', serif;"><b>YESHUA'S CLOTHES</b></header>
+    <div class="container">
+        <div class="intro">
+            <p>Camisas com o propósito de engajar a moda gospel</p>
 
-<a href="link" target="_blank" > this is a link</a>
+        </div>
+        <div class="produtos">
+            <div class="produto">
+                <img src="assets/camisa1.jpeg" alt="Camisa Yeshua 1">
+                <h3>Camisa Yeshua 1</h3>
+                <p>R$ 59,90</p>
+                <p>CAMISA OVERSIZE BRANCA COM ESTAMPA VIDEIRA NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua 1', 65,00, 'camisa1.jpeg')">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="assets/camisa2.jpeg" alt="Camisa Yeshua 2">
+                <h3>Camisa Yeshua 2</h3>
+                <p>R$ 65,00</p>
+                <p>CAMISA OVERSIZE AZUL COM ESTAMPA DE POMBA "Representação do Espírito Santo" NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua 2', 65,00, 'camisa2.jpeg')">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="assets/camisa3.jpeg" alt="Camisa Yeshua 3">
+                <h3>Camisa Yeshua 3</h3>
+                <p>R$ 65,00</p>
+                <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua3', '65,00', 'camisa3.jpeg')">Comprar</button>
+            </div>
+            <div class="produto">
+                <img src="assets/camisa4.jpeg" alt="Camisa Yeshua 4">
+                <h3>Camisa Yeshua 4</h3>
+                <p>R$ 65,00</p>
+                <p>CAMISA OVERSIZE CINZA COM ESTAMPA DA NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua 4', 65,00, 'camisa4.jpeg')">Comprar</button>
+            </div>
 
-<img src="link" alt="identificacao" width="" height="" />
+            <div class="produto">
+                <img src="assets/camisa5.jpeg" alt="Camisa Yeshua 5">
+                <h3>Camisa Yeshua 5</h3>
+                <p>R$ 65,00</p>
+                <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua 5', 65,00, 'camisa5.jpeg')">Comprar</button>
+            </div>
+
+            <div class="produto">
+                <img src="assets/camisa6.jpeg" alt="Camisa Yeshua 6">
+                <h3>Camisa Yeshua 6</h3>
+                <p>R$ 65,00</p>
+                <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua 6', 65,00, 'camisa6.jpeg')">Comprar</button>
+            </div>
+
+            <div class="produto">
+                <img src="assets/camisa7.jpeg" alt="Camisa Yeshua 7">
+                <h3>Camisa Yeshua 7</h3>
+                <p>R$ 65,00</p>
+                <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua 7', 65,00, 'camisa7.jpeg')">Comprar</button>
+            </div>
+
+            <div class="produto">
+                <img src="assets/camisa8.jpeg" alt="Camisa Yeshua 8">
+                <h3>Camisa Yeshua 8</h3>
+                <p>R$ 65,00</p>
+                <p>CAMISA OVERSIZE PRETA COM ESTAMPA DA COROA DE ESPINHOS NAS COSTAS</p>
+                <button class="btn-comprar"
+                    onclick="adicionarAoCarrinho('Camisa Yeshua 8', 65,00, 'camisa8.jpeg')">Comprar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Loja Roupas Yeshua. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+
+        function atualizarCarrinho() {
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            let contador = document.getElementById("cart-count");
+
+
+            if (carrinho.length > 0) {
+                contador.textContent = carrinho.length;
+                contador.style.display = "flex";
+            } else {
+
+                contador.style.display = "none";
+            }
+        }
+
+
+        function adicionarAoCarrinho(nome, preco, imagem) {
+
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            carrinho.push({ nome, preco, imagem });
+            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+            alert("Produto adicionado ao carrinho!");
+            atualizarCarrinho();
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            localStorage.setItem("carrinho", JSON.stringify([]));
+
+            atualizarCarrinho();
+        });
+    </script>
+
+
+    <div class="cart-button">
+        <img src="assets/carrinho.jpg" alt="Carrinho de Compras" />
+        <span id="cart-count" class="cart-badge">0</span>
+    </div>
+
+    <a href="carrinho.html">
+        <div class="cart-button">
+            <img src="assets/carrinho.jpg" alt="Carrinho de Compras" />
+        </div>
+    </a>
+
 
 </body>
-
-
 
 </html>
