@@ -1,64 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe Menu</title>
-    <link href="menu.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="menu">
-      <main>
-        <h1>SDG CAFE</h1>
-        <p class="established">Est. 2021</p>
-        <hr>
-        <section>
-          <h2>Coffee</h2>
-          <br>
-          <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/coffee.jpg" alt="coffee icon"/>
-          <br>
-          <div class="item">
-            <p class="flavor">French Vanilla</p><p class="price">3.00</p>
-          </div>
-          <div class="item">
-            <p class="flavor">Caramel Macchiato</p><p class="price">3.75</p>
-          </div>
-          <div class="item">
-            <p class="flavor">Pumpkin Spice</p><p class="price">3.50</p>
-          </div>
-          <div class="item">
-            <p class="flavor">Hazelnut</p><p class="price">4.00</p>
-          </div>
-          <div class="item">
-            <p class="flavor">Mocha</p><p class="price">4.50</p>
-          </div>
-        </section>
-        <section>
-          <h2>Desserts</h2>
-          <br>
-          <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/pie.jpg" alt="pie icon"/>
-          <br>
-          <div class="item">
-            <p class="dessert">Donut</p><p class="price">1.50</p>
-          </div>
-          <div class="item">
-            <p class="dessert">Cherry Pie</p><p class="price">2.75</p>
-          </div>
-          <div class="item">
-            <p class="dessert">Cheesecake</p><p class="price">3.00</p>
-          </div>
-          <div class="item">
-            <p class="dessert">Cinnamon Roll</p><p class="price">2.50</p>
-          </div>
-        </section>
-      </main>
-      <hr class="bottom-line">
-      <footer>
-        <p>
-          <a href="../../index.html" target="_blank">Visit our website</a>
-        </p>
-        <p class="address">Soli deo Gloria</p>
-      </footer>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe Menu</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1 class="title">SDG CAFE</h1>
+    <p class="est">Est. 2021</p>
+  </header>
+
+  <main>
+    <button id="cart-btn" type="button" class="btn">
+      <span id="show-cart">Show Cart</span>
+    </button>
+
+    <div id="cart-container">
+      <button class="btn" id="clear-cart">Clear Cart</button>
+      <div id="products-container"></div>
+      <p>Total number of items: <span id="total-items">0</span></p>
+      <p>Subtotal: <span id="subtotal">$0</span></p>
+      <p>Taxes: <span id="taxes">$0</span></p>
+      <p>Total: <span id="total">$0</span></p>
     </div>
-  </body>
+
+    <hr>
+    <h2>COFFEES</h2>
+    <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/coffee.jpg" alt="coffee icon" />
+    <div id="coffee-container">
+    </div>
+
+    <hr>
+    <h2>DESSERTS</h2>
+    <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/pie.jpg" alt="pie icon" />
+    <div id="dessert-container">
+    </div>
+  </main>
+
+  <hr class="bottom-line">
+  <footer>
+    <p>
+      <a href="../../index.html" target="_blank">Visit our website</a>
+    </p>
+    <p class="address">Soli Deo Gloria</p>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+
 </html>
