@@ -12,6 +12,12 @@ class CalcController {
 
     }
 
+    initialize() {
+        this._display.innerHTML = "0"; // Inicializa o display com 0
+        this._displayOperation.innerHTML = ""; // Limpa o displayOperation
+
+    }
+
     // Método utilitário para adicionar múltiplos eventos a um elemento
     addEventListenerAll(element, events, fn) {
         events.split(" ").forEach(event => {
@@ -36,7 +42,19 @@ class CalcController {
     }
 
     setDisplayOperation() {
-        operation = this._operation.join(" ")
+        if (this._operation.length == 0) {
+            this._displayOperation.innerHTML = "Array vazio"; // Exibe "Array vazio" se não houver operações
+        } else {
+        this._displayOperation.innerHTML = this._operation.join(" "); // Concatena os valores da operação
+        }
+    }
+
+    setDisplay(value) {
+        if(value) {
+            this._display.innerHTML = "Error"; // Exibe "Error" se o valor for inválido
+        } else {
+            this._display.innerHTML = this._operator; // Atualiza o display com o operador atual
+        }
     }
 
     // Inicializa os eventos dos botões
@@ -145,12 +163,21 @@ class CalcController {
         } else {
             this.setLastOperation(parseFloat(this._operator)); // Adiciona o valor ao operador
         }
-
+        
     }
 
 
     setOperator(value) {
-        this._operator += value;
+        if (this._operator.length >= 16) {
+            console.log("Limite de dígitos atingido."); // Log se o limite de dígitos for atingido
+            return; // Retorna se o limite for atingido
+        }
+        if (this._operator === "0") {
+            this._operator = value;
+        } else {
+            this._operator += value;
+        }
+        this.setDisplay();
     }
 
     pushOperation(value) {
@@ -264,7 +291,7 @@ class CalcController {
             this.clearAll(); // Limpa tudo se não houver operações
         }
         if(this._operator == "") {
-            this._operator = "0"; // Reseta o operador se estiver vazio
+            this.resetOperator(); // Reseta o operador se estiver vazio
         }
         if(this._isCalculated == "") {
             this._isCalculated = false; // Reseta a flag de cálculo se estiver vazia
