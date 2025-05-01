@@ -54,8 +54,8 @@ public class ClientTicTacToe {
                     continue;
                 }
 
-                table[line][column] = 'O';
-                out.println(line + "," + column);
+                //table[line][column] = 'O';
+                //out.println(line + "," + column);
             } else {
                 System.out.println("Waiting for player X's move...");
                 String move = in.readLine();
