@@ -4,57 +4,75 @@ import java.util.Scanner;
 
 public class ClientTicTacToe {
     static char[][] table = {
-        {' ', ' ', ' '},
-        {' ', ' ', ' '},
-        {' ', ' ', ' '}
+            { ' ', ' ', ' ' },
+            { ' ', ' ', ' ' },
+            { ' ', ' ', ' ' }
     };
     static char currentPlayer = 'O';
 
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Digite o IP do servidor (ex: 192.168.188.153): ");
+        System.out.print("Enter the server's IP (ex: 192.168.188.153): ");
         String host = input.nextLine();
 
         Socket socket = new Socket(host, 5000);
-        System.out.println("Conectado ao servidor como jogador O");
+        System.out.println("Conected to the server with player O");
 
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+        // Thread que escuta o servidor o tempo todo
+        new Thread(() -> {
+            try {
+                while (true) {
+                    String move = in.readLine();
+                    if (move == null)
+                        break;
+                    String[] parts = move.split(",");
+                    int line = Integer.parseInt(parts[0]);
+                    int column = Integer.parseInt(parts[1]);
+                    table[line][column] = (currentPlayer == 'O') ? 'X' : 'O'; // adversário
+                    printTable();
+                }
+            } catch (IOException e) {
+                System.out.println("Erro ao receber dados do servidor.");
+            }
+        }).start();
 
         boolean gameOn = true;
 
         while (gameOn) {
             if (currentPlayer == 'O') {
                 printTable();
-                System.out.println("Sua jogada (O). Digite linha e coluna (0-2):");
+                System.out.println("Your turn (O). Enter line and column (0-2):");
                 int line = input.nextInt();
                 int column = input.nextInt();
 
                 if (!isValidMove(line, column)) {
-                    System.out.println("Posição inválida. Tente de novo.");
+                    System.out.println("Invalid position. Try again.");
                     continue;
                 }
 
-                table[line][column] = 'O';
-                out.println(line + "," + column);
+                //table[line][column] = 'O';
+                //out.println(line + "," + column);
             } else {
-                System.out.println("Esperando jogada do jogador X...");
+                System.out.println("Waiting for player X's move...");
                 String move = in.readLine();
                 String[] parts = move.split(",");
                 int line = Integer.parseInt(parts[0]);
                 int column = Integer.parseInt(parts[1]);
                 table[line][column] = 'X';
-            }
+                }
 
             if (victoryVerification()) {
                 printTable();
-                System.out.println("Jogador " + currentPlayer + " venceu!");
+                System.out.println("Player " + currentPlayer + " win!");
                 gameOn = false;
                 break;
             } else if (drawVerification()) {
                 printTable();
-                System.out.println("Empate!");
+                System.out.println("Draw!");
                 gameOn = false;
                 break;
             }
