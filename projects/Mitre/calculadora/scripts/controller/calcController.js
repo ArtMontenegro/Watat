@@ -1,31 +1,29 @@
 class CalcController {
 
     constructor() {
-        this._lastOperator = ""; // Último operador
         this._lastNumber = ""; // Último número
+        this._specialNumber = "";
         this._operation = [0]; // Operações realizadas
         this._operator = "0"; // Operador atual
         this._isCalculated = false; // Flag para verificar se está calculando
+        this._specialValue = "";
         this._display = document.querySelector("#display"); // Elemento do display
         this._displayOperation = document.querySelector("#displayOperation"); // Elemento do displayOperation
         this.initButtonsEvents(); // Inicializa os eventos dos botões
-
     }
 
     initialize() {
         this._display.innerHTML = "0"; // Inicializa o display com 0
         this._displayOperation.innerHTML = ""; // Limpa o displayOperation
-
     }
 
-    // Método utilitário para adicionar múltiplos eventos a um elemento
     addEventListenerAll(element, events, fn) {
         events.split(" ").forEach(event => {
             element.addEventListener(event, fn, false);
         });
     }
 
-    get display () {
+    get display() {
         return this._display.innerHTML; // Retorna o valor do display
     }
 
@@ -41,12 +39,9 @@ class CalcController {
         this._displayOperation.innerHTML = value; // Define o valor do displayOperation
     }
 
-    setDisplayOperation() {
-        if (this._operation.length == 0) {
-            this._displayOperation.innerHTML = "Array vazio"; // Exibe "Array vazio" se não houver operações
-        } else {
-        this._displayOperation.innerHTML = this._operation.join(" "); // Concatena os valores da operação
-        }
+    setDisplayOperation(value) {
+        this._displayOperation.innerHTML = value; // Concatena os valores da operação
+        
     }
 
     setDisplay(value) {
@@ -57,54 +52,41 @@ class CalcController {
         }
     }
 
-    // Inicializa os eventos dos botões
     initButtonsEvents() {
-        let buttons = document.querySelectorAll(".buttons button"); // Seleciona todos os botões
+        let buttons = document.querySelectorAll(".buttons button");
 
         buttons.forEach(btn => {
-            // Remove todos os ouvintes existentes antes de adicionar novos
             btn.replaceWith(btn.cloneNode(true));
             btn = document.querySelector(`[data-value="${btn.getAttribute("data-value")}"]`);
 
             this.addEventListenerAll(btn, "click drag", e => {
-                let textBtn = btn.getAttribute("data-value"); // Obtém o valor do botão
-                this.execBtn(textBtn); // Executa a ação do botão
+                let textBtn = btn.getAttribute("data-value");
+                this.execBtn(textBtn);
             });
 
             this.addEventListenerAll(btn, "mouseover mouseup mousedown", e => {
-                btn.style.cursor = "pointer"; // Altera o cursor para "pointer"
+                btn.style.cursor = "pointer";
             });
         });
     }
 
-    // Executa a ação correspondente ao botão clicado
     execBtn(value) {
-        this.checkValues(); // Verifica os valores antes de executar a ação
-    console.log("Valor do botão:", value); // Log do valor do botão
+        this.checkValues();
         switch (value) {
             case "C":
-                this.clearAll(); // Limpa tudo
+                this.clearAll();
                 break;
             case "CE":
-                this.clearEntry(); // Limpa a última entrada
+                this.clearEntry();
                 break;
             case "=":
-                this.calculate(); // Realiza o cálculo
+                this.calculate();
                 break;
             case "backspace":
                 this.removeLastDigit(); // Remove o último dígito
                 break;
-            case "1/x":
-
-            break;
-            case "x2":
-
-                break;
-            case "vx":
-
-                    break;
             case "+/-":
-                this.toggleSign(); // Alterna o sinal do número atual
+                this.toggleSign();
                 break;
             case "%":
 
@@ -125,52 +107,59 @@ class CalcController {
             case "8":
             case "9":
             case "0":
-                this.addOperation(value); // Adiciona o valor ao display
-                this._isCalculated = false; // Reseta a flag de cálculo
+                this.addOperation(value);
+                this._isCalculated = false;
                 break;
-                default:                    
-                    console.log("Default switch") // Adiciona o valor ao display
+            default:
         }
     }
 
     addOperation(value) {
         if (this.isOperator(value)) {
             this.resetOperator(); // Reseta o operador
-            if(this.isOperator(this.getLastOperation())) {
+            if (this.isOperator(this.getLastOperation())) {
                 this.setLastOperation(value); // Atualiza o último operador
             } else {
-                this.pushOperation(value); // Adiciona o último operador à operação
+                this.pushOperation(value);
             }
         } else {
             if (isNaN(Number(value))) {
-                if (this._operator.includes(".")) {
-                    console.log("Valor já contém ponto decimal."); // Log se o valor já contém ponto decimal
-                } else {
+                if (this.isSpecial(value)) {
+                    this._specialValue = value;
+                    value = this.calculateSepecial(value);
+                    console.log("value "+value)
                     this.updateOpeators(value); // Atualiza o operador
+                    this.calculate();
+                } else {
+                    if (this._operator.includes(".")) {
+                        console.log("Valor já contém ponto decimal."); // Log se o valor já contém ponto decimal
+                    } else {
+                        this.updateOpeators("."); // Atualiza o operador
+                    }
                 }
             } else {
+                if (this._isCalculated) {
+                    this.clearAll()
+                }
                 this.updateOpeators(value); // Atualiza o operador
             }
         }
     }
 
     updateOpeators(value) {
-        this.setOperator(value); // Adiciona o valor ao operador
+        this.setOperator(value);
         if (this.isOperator(this.getLastOperation())) {
             this.pushOperation(parseFloat(this._operator));
 
             
         } else {
-            this.setLastOperation(parseFloat(this._operator)); // Adiciona o valor ao operador
+            this.setLastOperation(parseFloat(this._operator));
         }
-        
     }
-
 
     setOperator(value) {
         if (this._operator.length >= 16) {
-            console.log("Limite de dígitos atingido."); // Log se o limite de dígitos for atingido
-            return; // Retorna se o limite for atingido
+            return;
         }
         if (this._operator === "0") {
             this._operator = value;
@@ -184,15 +173,19 @@ class CalcController {
         this._operation.push(value);
 
         if (this._operation.length > 3) {
-            this.calculate(); // Realiza o cálculo se houver mais de 3 operações
-            console.log("push:", this._operation); // Log da operação atual
+            this.calculate();
         }
+        if (!this._isCalculated) {
+            if (this.isOperator(value)){
+                this.setDisplayOperation(this._operation.join(" "));
+            }
+            
+        } 
+        
     }
 
     setLastOperation(value) {
         this._operation[this._operation.length - 1] = value; // Atualiza o último valor da operação
-        console.log("set:", this._operation); // Log da operação atual
-
     }
 
     getLastOperation() {
@@ -203,79 +196,141 @@ class CalcController {
     toggleSign() {
         if (this._operator !== "0") {
             this._operator = this._operator.startsWith("-") ? this._operator.slice(1) : "-" + this._operator;
-            this.setLastOperation(parseFloat(this._operator)); // Atualiza o último operador
+            this.setLastOperation(parseFloat(this._operator));
         } else {
-            this._operator = "-" + this.getLastItem(false); // Obtém o último número
+            this._operator = "-" + this.getLastItem(false);
         }
     }
 
-    // Limpa todo o display
     clearAll() {
         this._operation = [0]; // Reseta a operação
         this.resetOperator(); // Reseta o operador
         this._lastOperator = ""; // Reseta o último operador
         this._lastNumber = ""; // Reseta o último número
         this._isCalculated = false; // Reseta a flag de cálculo
-        this.displayEl.innerHTML = "0"; // Limpa o display
+        this.setDisplay("0");// Limpa o display
+        this.setDisplayOperation("")
     }
 
-    // Limpa a última entrada
     clearEntry() {
         this.resetOperator(); // Reseta o operador
+        this.setLastOperation(this._operator)
         if (!this.isOperator(this.getLastOperation())) {
             this._operation.pop(); // Remove o último item da operação
+            this.checkValues();
         }
+        this.setDisplay(this._operator);
+        
     }
 
-    // Remove o último dígito do display
     removeLastDigit() {
         if (this._operator.length > 1) {
-            this._operator = this._operator.slice(0, -1); // Remove o último dígito do operador
+            this._operator = this._operator.slice(0, -1);
         } else {
-            this.resetOperator(); // Reseta o operador se não houver mais dígitos
+            this.resetOperator();
         }
+        this.setLastOperation(this._operator)
+        this.setDisplay(this._operator);
+        
     }
 
-    // Adiciona um valor ao display
-    addToDisplay(value) {}
-
-    // Realiza o cálculo
     calculate() {
         let result = 0; // Inicializa o resultado como 0
         let lastItem = this.getLastItem(); // Obtém o último item da operação
+        let lastOperation = "";
+        let specialOperation = ""
+        let specialOperation2 = this._operation;
+
+        if (this._specialValue != "" && this._operation.length < 2) {
+            if (this._specialValue != "%") {
+                if (this._specialValue == "fraction") {
+                    specialOperation = `1/(${this._specialNumber})`;
+                } else if (this._specialValue == "expo") {
+                    specialOperation = `sqr(${this._specialNumber})`
+                } else if (this._specialValue == "square") {
+                    specialOperation = `&radic;(${this._specialNumber})`
+                }
+                this.setDisplayOperation(specialOperation);
+            } else {
+                this.setDisplayOperation("0");
+            }
+            this._isCalculated = true; // Define a flag como verdadeira
+            this._specialValue = "";
+            this.resetOperator(); // Reseta o operador
+            return;
+        }
 
         if (this._isCalculated) {
-            this.pushOperation(this._lastNumber); // Adiciona o primeiro número à operação
+            this.pushOperation(this._lastNumber);
         } else if (this._operation.length == 2) {
-            this.pushOperation(this._operation[0]); // Adiciona o primeiro número à operação
+            this.pushOperation(this._operation[0]);
         }
 
         if (this._operation.length > 3) {
-            this._operation.pop(); // Remove o último item da operação
+            this._operation.pop();
         }
-        this._lastNumber = this.getLastItem(false); // Obtém o último número
+        if (!this._isCalculated) {
+            this._lastNumber = this.getLastItem(false); // Salva o último número antes do cálculo
+        }
         result = eval(this._operation.join("")); // Avalia a operação
+
+        if (this._specialValue != "") {
+            if (this._specialValue == "fraction") {
+                specialOperation = `1/(${this._specialNumber})`;
+            } else if (this._specialValue == "expo") {
+                specialOperation = `sqr(${this._specialNumber})`
+            } else if (this._specialValue == "square") {
+                specialOperation = `&radic;(${this._specialNumber})`
+            }
+            specialOperation2[2] = specialOperation;
+            lastOperation = specialOperation2.join(" ") + " =";
+        } else {
+            lastOperation = this._operation.join(" ") + " =";
+        }
         this._operation = [parseFloat(result)]; // Atualiza a operação com o resultado
+        this.setDisplay(this._operation)
         this.pushOperation(lastItem); // Adiciona o resultado à operação
         this._isCalculated = true; // Define a flag como verdadeira
+        this._specialValue = "";
         this.resetOperator(); // Reseta o operador
+        this.setDisplayOperation(lastOperation);
+        console.log("last number "+this.lastNumber)
+        
+    }
+
+    calculateSepecial(value) {
+        const lastNumber = this.getLastItem(false);
+        this._specialNumber = lastNumber;
+        const firstNumber = this._operation[0];
+        if (value == "fraction") {
+            return (1 / lastNumber).toPrecision(16);
+        } else if (value == "expo") {
+            return (lastNumber ** 2);
+        } else if (value == "square") {
+            return (Math.sqrt(lastNumber)).toPrecision(16);
+        } else {
+            if (this._operation.length < 2) {
+                return "0";
+            }
+            return  String(firstNumber * lastNumber / 100);
+        }
     }
 
     getLastItem(value = true) {
         if (value) {
             for (let i = this._operation.length - 1; i >= 0; i--) {
                 if (this.isOperator(this._operation[i])) {
-                    return this._operation[i]; // Retorna o último item se for um operador
+                    return this._operation[i];
                 }
             }
         } else {
             for (let i = this._operation.length - 1; i >= 0; i--) {
                 if (!this.isOperator(this._operation[i])) {
-                    return this._operation[i]; // Retorna o último item se for um operador
+                    return this._operation[i];
                 }
             }
         }
-        
+        return undefined;
     }
 
     isOperator(value) {
@@ -287,15 +342,14 @@ class CalcController {
     }
 
     checkValues(){
-        if(this._operation.length == 0) {
+        if (this._operation.length == 0) {
             this.clearAll(); // Limpa tudo se não houver operações
         }
-        if(this._operator == "") {
+        if (this._operator == "") {
             this.resetOperator(); // Reseta o operador se estiver vazio
         }
-        if(this._isCalculated == "") {
+        if (this._isCalculated == "") {
             this._isCalculated = false; // Reseta a flag de cálculo se estiver vazia
         }
-
     }
 }
