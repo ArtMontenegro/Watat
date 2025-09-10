@@ -33,7 +33,41 @@ function customize_aliases {
 	alias java11="switch_to_java_11"
 	alias java17="switch_to_java_17"
 
-	alias la="ls -la -A -h --group-directories-first"
+	# alias la="ls -la -A -h --group-directories-first"
+	# la do ivisson
+
+	la() {
+		local targets=("$@")
+		[[ $# -eq 0 ]] && targets=(.)
+
+		for target in "${targets[@]}"; do
+			if [[ -d "$target" ]]; then
+				echo
+				echo "$target:"
+
+				# Diretórios normais
+				ls -l --color=always "$target" 2>/dev/null | grep '^d'
+
+				# Diretórios ocultos (sem incluir . e .., sem ./)
+				ls -ld --color=always "$target"/.[!.]* 2>/dev/null \
+					| sed "s|$target/||" | grep '^d'
+
+				# Arquivos ocultos
+				ls -ld --color=always "$target"/.[!.]* 2>/dev/null \
+					| sed "s|$target/||" | grep '^-'
+
+				# Arquivos normais
+				ls -l --color=always "$target" 2>/dev/null | grep '^-'
+
+			elif [[ -f "$target" ]]; then
+				ls -l --color=always "$target"
+
+			else
+				echo "la: cannot access '$target': No such file or directory"
+			fi
+		done
+	}
+
 	alias mla="ls -la -A -h --group-directories-first --full-time"
 	alias more="more -e"
 }
